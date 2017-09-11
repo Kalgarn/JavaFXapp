@@ -51,7 +51,7 @@ public class ConnexionBDD {
 			try {
 				String createDatabaseQuery = "CREATE DATABASE javafx;";
 				String useDatabaseQuery = "USE javafx;";
-				String createTableQuery = "CREATE TABLE USERFX " + "(ID int,"
+				String createTableQuery = "CREATE TABLE USERFX " + "(IDUSER AUTO_INCREMENT,"
 															   + "firstName varchar(15),"
 															   + "lastName varchar(15),"
 															   + "street varchar(15),"

@@ -12,6 +12,7 @@ import javafx.beans.property.StringProperty;
 
 public class User {
 	
+	private IntegerProperty idUSer;
     private StringProperty firstName;
     private StringProperty lastName;
     private StringProperty street;
