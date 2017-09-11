@@ -24,20 +24,71 @@ public class MysqlUserDaoImp implements UserDao {
 
 	@Override
 	public void create(User u) {
-		// TODO Auto-generated method stub
-
+		PreparedStatement pStmt = null;
+		
+		try {
+			pStmt.executeUpdate("INSERT INTO USERFX (FIRSTNAME, LASTNAME, STREET, CITY, POSTALCODE, BIRTHDAY) VALUES (?, ?, ?, ?, ?, ?");
+			pStmt.setString(1, u.getFirstName());
+			pStmt.setString(2, u.getLastName());
+			pStmt.setString(3, u.getStreet());
+			pStmt.setString(4, u.getCity());
+			pStmt.setInt(5, u.getPostalCode());
+			pStmt.setInt(5, u.getBirthday());
+			
+			pStmt.executeUpdate();
+			
+			System.out.println("insert user : " + u.getFirstName());
+			
+			pStmt.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void update(User u) {
-		// TODO Auto-generated method stub
+		PreparedStatement pStmt = null;
+		
+		try {
+			pStmt.executeUpdate("UPDATE USERFX SET FIRSTNAME = ?, LASTNAME = ?, STREET = ?, CITY = ?, POSTALCODE = ?, BIRTHDAY = ? WHERE IDUSER = ?");
+			pStmt.setString(1, u.getFirstName());
+			pStmt.setString(2, u.getLastName());
+			pStmt.setString(3, u.getStreet());
+			pStmt.setString(4, u.getStreet());
+			pStmt.setInt(5, u.getPostalCode());
+			pStmt.setInt(5, u.getBirthday());
+			pStmt.setInt(6, u.getIdUSer());
+			
+			pStmt.executeUpdate();
+			
+			System.out.println("update user : ");
+			
+			pStmt.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 	}
 
 	@Override
 	public void delete(User u) {
-		// TODO Auto-generated method stub
-
+		PreparedStatement pStmt = null;
+		
+		try {
+			pStmt = conn.prepareStatement("DELETE FROM USERFX WHERE IDUSER = ?");
+			pStmt.setInt(1, u.getIdUSer());
+			
+			pStmt.executeUpdate();
+			
+			System.out.println("delete user: " + u.getIdUSer() +"->"+ u.getFirstName());
+			
+			pStmt.close();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -62,7 +113,7 @@ public class MysqlUserDaoImp implements UserDao {
 				String lastName = rs.getString("lastName");
 				String street = rs.getString("street");
 				String city = rs.getString("city");
-				int postalcode = rs.getInt("ID");
+				int postalcode = rs.getInt("postalcode");
 				String birthday = rs.getString("birthday");
 				
 				u= new User(firstName, lastName, street, city, postalcode, birthday);

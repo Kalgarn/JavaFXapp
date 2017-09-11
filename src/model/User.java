@@ -106,4 +106,8 @@ public class User {
 	public StringProperty lastNameProperty() {
         return firstName;
     }
+
+	public int getIdUSer() {
+		return idUSer.get();
+	}
 }
