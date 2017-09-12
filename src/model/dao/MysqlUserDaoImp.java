@@ -1,9 +1,11 @@
 package model.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +35,7 @@ public class MysqlUserDaoImp implements UserDao {
 			pStmt.setString(3, u.getStreet());
 			pStmt.setString(4, u.getCity());
 			pStmt.setInt(5, u.getPostalCode());
-			pStmt.setInt(5, u.getBirthday());
+			pStmt.setDate(5, java.sql.Date.valueOf(u.getBirthday()));
 			
 			pStmt.executeUpdate();
 			
@@ -57,7 +59,7 @@ public class MysqlUserDaoImp implements UserDao {
 			pStmt.setString(3, u.getStreet());
 			pStmt.setString(4, u.getStreet());
 			pStmt.setInt(5, u.getPostalCode());
-			pStmt.setInt(5, u.getBirthday());
+			pStmt.setDate(5, java.sql.Date.valueOf(u.getBirthday()));
 			pStmt.setInt(6, u.getIdUSer());
 			
 			pStmt.executeUpdate();
@@ -114,7 +116,7 @@ public class MysqlUserDaoImp implements UserDao {
 				String street = rs.getString("street");
 				String city = rs.getString("city");
 				int postalcode = rs.getInt("postalcode");
-				String birthday = rs.getString("birthday");
+				Date birthday = rs.getDate("birthday");
 				
 				u= new User(firstName, lastName, street, city, postalcode, birthday);
 				res.add(u);

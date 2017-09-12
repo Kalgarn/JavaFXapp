@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 import javafx.beans.property.IntegerProperty;
@@ -35,13 +36,13 @@ public class User {
         this.birthday = new SimpleObjectProperty<LocalDate>(LocalDate.of(1999, 2, 21));
     }
 
-	public User(String firstName2, String lastName2, String street2, String city2, int postalcode2, String birthday2) {
+	public User(String firstName2, String lastName2, String street2, String city2, int postalcode2, Date birthday2) {
 		this.firstName = new SimpleStringProperty(firstName2);
         this.lastName = new SimpleStringProperty(lastName2); 
         this.street = new SimpleStringProperty(street2);
         this.city = new SimpleStringProperty(city2);
         this.postalCode = new SimpleIntegerProperty(postalcode2);
-        this.birthday = new SimpleObjectProperty<LocalDate>();
+        this.birthday = new SimpleObjectProperty<LocalDate>(LocalDate.now());
 	}
 
 	public User(String firstName2, String lastName2, String street2, String city2, int postalcode2) {
@@ -76,28 +77,28 @@ public class User {
 		return birthday.get();
 	}
 
-	public void setFirstName(StringProperty firstName) {
-		this.firstName = firstName;
+	public void setFirstName(String firstName) {
+		this.firstName.set(firstName);
 	}
 
-	public void setLastName(StringProperty lastName) {
-		this.lastName = lastName;
+	public void setLastName(String lastName) {
+		this.lastName.set(lastName);
 	}
 
-	public void setStreet(StringProperty street) {
-		this.street = street;
+	public void setStreet(String street) {
+		this.street.set(street);
 	}
 
-	public void setPostalCode(IntegerProperty postalCode) {
-		this.postalCode = postalCode;
+	public void setPostalCode(Integer postalCode) {
+		this.postalCode.set(postalCode);
 	}
 
-	public void setCity(StringProperty city) {
-		this.city = city;
+	public void setCity(String city) {
+		this.city.set(city);
 	}
 
-	public void setBirthday(ObjectProperty<LocalDate> birthday) {
-		this.birthday = birthday;
+	public void setBirthday(LocalDate birthday) {
+		this.birthday.set(birthday);
 	}
 
 	public StringProperty firstNameProperty() {
